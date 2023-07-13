@@ -1,11 +1,28 @@
+import { Route , RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import SignUp from './pages/SignUp.jsx'
+import LogIn from './pages/LogIn.jsx'
+import NavBar from './components/NavBar.jsx'
+import HomePage from './pages/HomePage.jsx'
+import Tracker from './pages/Tracker.jsx';
+import Profile from './pages/Profile.jsx';
+ 
+import RootLayout from './layauts/RootLayout.jsx';
+const router=createBrowserRouter(
+  createRoutesFromElements(
+    
+  <Route path="/" element={<RootLayout/>} >
+      <Route index element={<HomePage/>} />
+      <Route path="login" element={<LogIn/>}/>
+      <Route path="signup" element={<SignUp/>}/>
+      <Route path="tracker" element={<Tracker/>}/>
+      <Route path="profile" element={<Profile/>}/>
+  </Route>
+  )
 
-
+)
 function App() {
-
   return (
-    <h1 className=" text-center text-5xl">
-      hello world
-    </h1>
+    <RouterProvider router={router}/>
   )
 }
 
