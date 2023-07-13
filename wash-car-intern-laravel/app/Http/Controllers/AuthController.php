@@ -7,9 +7,10 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\hash;
 
+
 class AuthController extends Controller
 {
-    //
+
     public function register(Request $request){
         
         $request->validate([
@@ -27,13 +28,12 @@ class AuthController extends Controller
             'last_name'=>$request->lastname,
             'phone_number'=>$request->phonenumber,
 
-            'password'=> hash::make($request->password),
+            'password'=> hash::make($request->password),]
+        );
+        
 
+        
+        return response()->json($newUser->createToken("user token"));
 
-        ]);
-    
-
-
-        return response()->json($newUser);
     }
 }
