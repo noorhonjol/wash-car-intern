@@ -1,12 +1,11 @@
 import { Route , RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import SignUp from './pages/SignUp.jsx'
 import LogIn from './pages/LogIn.jsx'
-import NavBar from './components/NavBar.jsx'
 import HomePage from './pages/HomePage.jsx'
 import Tracker from './pages/Tracker.jsx';
 import Profile from './pages/Profile.jsx';
- 
 import RootLayout from './layauts/RootLayout.jsx';
+
 const router=createBrowserRouter(
   createRoutesFromElements(
     
