@@ -1,5 +1,4 @@
 import HomeIcon from "../components/HomeIcon"
-import NavBar from "../components/NavBar"
 const picCard = [
 
   { "src": "speedCar.png", "alt": "Speed Pic", "label": "Speed" },
@@ -12,7 +11,7 @@ const HomePage = () => {
     <section className="bg-basic dark:bg-gray-900">
       <div className=" gap-11 flex flex-col justify-center sm:h-screen md:h-screen lg:py-0">
         <div>
-          <h3 className=" font-bold text-dark-blue text-center text-gray-400 text-base leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h3 className=" font-bold text-center text-gray-400 text-base leading-tight tracking-tight md:text-2xl dark:text-white">
             Welcome to our vehicle washing website !
           </h3>
         </div>
@@ -22,8 +21,8 @@ const HomePage = () => {
         </div>
         <div className=" flex flex-wrap items-center justify-center gap-11" >
           {
-            picCard.map((picc) => {
-              return <HomeIcon src={picc.src} alt={picc.alt} label={picc.label} />
+            picCard.map((picc,index) => {
+              return <HomeIcon key={index} src={picc.src} alt={picc.alt} label={picc.label} />
             })
           }
         </div>

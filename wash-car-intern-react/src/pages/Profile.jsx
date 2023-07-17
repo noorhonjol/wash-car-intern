@@ -1,10 +1,10 @@
-import InputField from "../components/InputField"
-const inputAttributes=[
-    {"id":"firstname" , "name":"firatname" ," Placeholder":"Enter your Fisrt Name " , "type":"text" ,"LabelText":"First Name"},
-    {"id":"lastname" , "name":"lastname" ," Placeholder":"Enter your Last Name " , "type":"text" ,"LabelText":"Last Name"},
-    {"id":"phonenumber" , "name":"phonenumber" ," Placeholder":"Enter your Phone Number" , "type":"text" ,"LabelText":"Phone Number"},
-    {"id":"password" , "name":"password" ," Placeholder":"Enter your Password" , "type":"password","LabelText":"Password"},
-]
+// import InputField from "../components/InputField"
+// const inputAttributes=[
+//     {"id":"firstname" , "name":"firatname" ," Placeholder":"Enter your Fisrt Name " , "type":"text" ,"LabelText":"First Name"},
+//     {"id":"lastname" , "name":"lastname" ," Placeholder":"Enter your Last Name " , "type":"text" ,"LabelText":"Last Name"},
+//     {"id":"phonenumber" , "name":"phonenumber" ," Placeholder":"Enter your Phone Number" , "type":"text" ,"LabelText":"Phone Number"},
+//     {"id":"password" , "name":"password" ," Placeholder":"Enter your Password" , "type":"password","LabelText":"Password"},
+// ]
 const Profile = () => {
   return (
     <section className="bg-basic dark:bg-gray-900">
@@ -18,7 +18,7 @@ const Profile = () => {
         </div>
 
       </div>
-     </section>
+    </section>
 
    
     
