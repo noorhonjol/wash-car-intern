@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\VehicleController;
 use App\Models\Reservation;
 use App\Models\Service;
@@ -25,9 +26,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
+
 Route::get('/vehicles',[VehicleController::class,'index']);
-Route::get('/vehicle/{id}/services',[VehicleController::class,'servicesByVehicleId'])->whereNumber("id");
-Route::post('/vehicle/add',[VehicleController::class,'add'])->whereNumber("id");
+Route::post('/vehicle/add',[VehicleController::class,'add']);
+
+Route::get('/vehicle/{id}/services',[ServicesController::class,'servicesByVehicleId'])->whereNumber("id");
+Route::get('/services',[ServicesController::class,'index']);
+
 // Route::get('/',function(){
 
 
