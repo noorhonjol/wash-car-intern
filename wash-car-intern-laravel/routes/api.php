@@ -27,8 +27,7 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::get('/vehicles',[VehicleController::class,'index']);
 Route::get('/vehicle/{id}/services',[VehicleController::class,'servicesByVehicleId'])->whereNumber("id");
-Route::get('/vehicle/add',[VehicleController::class,'add'])->whereNumber("id");
-
+Route::post('/vehicle/add',[VehicleController::class,'add'])->whereNumber("id");
 // Route::get('/',function(){
 
 
