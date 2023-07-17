@@ -12,18 +12,7 @@ class VehicleController extends Controller
         return response()->json([Vehicle::all()]);
 
     }
-    public function servicesByVehicleId($id){
-
-        $vehicle=Vehicle::find($id);
-
-        if($vehicle){
-            return response()->json($vehicle->services);
-
-        }
-        
-        return response(['massage'=>'the vehicle not exist'],404);
     
-    }
     public function add(Request $request){
 
         $request->validate([
