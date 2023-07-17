@@ -33,6 +33,8 @@ Route::post('/vehicle/add',[VehicleController::class,'add']);
 Route::get('/vehicle/{id}/services',[ServicesController::class,'servicesByVehicleId'])->whereNumber("id");
 Route::get('/services',[ServicesController::class,'index']);
 
+Route::post('/service/add',[ServicesController::class,'add']);
+
 // Route::get('/',function(){
 
 
