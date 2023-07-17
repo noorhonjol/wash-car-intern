@@ -17,7 +17,7 @@ return new class extends Migration
            
             $table->string("service_name");
             
-            $table->decimal("description");
+            $table->text("description");
            
             $table->decimal("price");
             

@@ -12,4 +12,8 @@ class Service extends Model
     public function vehicle(){
         $this->belongsTo(Vehicle::class);
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    } 
 }
