@@ -24,4 +24,17 @@ class VehicleController extends Controller
         return response(['massage'=>'the vehicle not exist'],404);
     
     }
+    public function add(Request $request){
+
+        $request->validate([
+            'vehicle_type'=>['required','alpha:ascii','unique:'.Vehicle::class]
+        ]);
+        
+        $newVehicle = Vehicle::create([
+            'vehicle_type' => $request->vehicletype
+        ]);
+
+        return response()->json(['message' => 'Vehicle created successfully', 'data' => $newVehicle], 201);
+    
+    }
 }
