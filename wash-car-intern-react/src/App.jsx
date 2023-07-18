@@ -5,11 +5,13 @@ import HomePage from './pages/HomePage.jsx'
 import Tracker from './pages/Tracker.jsx';
 import Profile from './pages/Profile.jsx';
 import RootLayout from './layauts/RootLayout.jsx';
+import MapContainer from './pages/Map.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
     
   <Route path="/" element={<RootLayout/>} >
+      <Route path='map' element={<MapContainer/>} /> 
       <Route index element={<HomePage/>} />
       <Route path="login" element={<LogIn/>}/>
       <Route path="signup" element={<SignUp/>}/>
