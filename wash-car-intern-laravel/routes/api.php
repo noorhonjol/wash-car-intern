@@ -34,6 +34,8 @@ Route::get('/vehicle/{id}/services',[ServicesController::class,'servicesByVehicl
 Route::get('/services',[ServicesController::class,'index']);
 
 Route::post('/service/add',[ServicesController::class,'add']);
+Route::delete('/service/{id}/delete',[ServicesController::class,'delete']);
+
 
 // Route::get('/',function(){
 
