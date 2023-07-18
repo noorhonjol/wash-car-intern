@@ -20,8 +20,10 @@ return new class extends Migration
             $table->text("description");
            
             $table->decimal("price");
-            
+           
             $table->foreignId("vehicle_id")->constrained("vehicles")->cascadeOnDelete();
+           
+            $table->text("image_url");
 
             $table->timestamps();
         });

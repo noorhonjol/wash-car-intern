@@ -27,18 +27,27 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
-Route::get('/vehicles',[VehicleController::class,'index']);
-Route::post('/vehicle/add',[VehicleController::class,'add']);
 
-Route::get('/vehicle/{id}/services',[ServicesController::class,'servicesByVehicleId'])->whereNumber("id");
-Route::get('/services',[ServicesController::class,'index']);
+Route::middleware(["auth:sanctum"])->group(function(){
+    //any authiniticated user can use
 
-Route::post('/service/add',[ServicesController::class,'add']);
-Route::delete('/service/{id}/delete',[ServicesController::class,'delete']);
+    Route::get('/vehicles',[VehicleController::class,'index']);
+    Route::get('/vehicle/{id}/services',[ServicesController::class,'servicesByVehicleId'])->whereNumber("id");
+    Route::get('/services',[ServicesController::class,'index']);
+    
+    // just for admin
+    Route::middleware(["can:admin"])->group(function(){
 
+        Route::post('/vehicle/add',[VehicleController::class,'add']);
+        Route::post('/vehicle/{id}/delete',[VehicleController::class,'delete']);
+        
+        Route::post('/service/add',[ServicesController::class,'add']);
+        
+        Route::delete('/service/{id}/delete',[ServicesController::class,'delete']); 
+        
+    });
 
-// Route::get('/',function(){
+    //just for worker
 
+});
 
-//     return Reservation::with('customer', 'service')->get('status');
-// });
