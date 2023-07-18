@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string("vehicle_type")->unique();
+            $table->text("image_url");
             $table->timestamps();
         });
     }

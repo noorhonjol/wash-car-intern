@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model{
     use HasFactory;
 
+    protected $fillable=[
+        "vehicle_type",
+        "id"
+    ];
 
     public function services(){
 
