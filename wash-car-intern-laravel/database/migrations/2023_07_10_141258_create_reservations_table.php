@@ -15,11 +15,11 @@ return new class extends Migration
             
             $table->id();
             
-            $table->foreignId("worker_id")->constrained("users")->nullable();
+            $table->foreignId("worker_id")->constrained("users")->cascadeOnDelete()->nullable();
             
-            $table->foreignId("customer_id")->constrained("users");
+            $table->foreignId("customer_id")->constrained("users")->cascadeOnDelete();
             
-            $table->foreignId("service_id")->constrained("services");
+            $table->foreignId("service_id")->constrained("services")->cascadeOnDelete();
 
             $table->string("status")->default("pending");
 

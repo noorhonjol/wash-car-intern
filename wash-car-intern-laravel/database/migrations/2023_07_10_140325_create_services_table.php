@@ -21,7 +21,7 @@ return new class extends Migration
            
             $table->decimal("price");
             
-            $table->foreignId("vehicle_id")->constrained("vehicles");
+            $table->foreignId("vehicle_id")->constrained("vehicles")->cascadeOnDelete();
 
             $table->timestamps();
         });

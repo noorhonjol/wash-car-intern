@@ -15,12 +15,12 @@ class ServicesController extends Controller
 
         $vehicle=Vehicle::find($id);
 
-        if($vehicle){
-            return response()->json($vehicle->services);
-
+        if(!$vehicle){
+            
+            return response()->json(['massage'=>'the vehicle not exist'],404);
         }
+        return response()->json($vehicle->services);
         
-        return response(['massage'=>'the vehicle not exist'],404);
     
     }
     public function add(Request $request){
@@ -43,6 +43,19 @@ class ServicesController extends Controller
 
         return response()->json(['message' => 'Service created successfully', 'data' => $newService], 201);
     
+    }
+
+    public function delete($id){
+        $serchedService=Service::find($id);
+
+        if(!$serchedService){
+            
+            return response()->json(['massage'=>'the service not exist'],404);
+        }
+        
+        $serchedService->delete();
+        return response()->json(["message"=>"done delete element","data"=>$serchedService],204);
+        
     }
 
 }
