@@ -36,8 +36,7 @@ const inputAttributes = [
 ];
 const SignUp = () => {
   return (
-    <section className="bg-basic dark:bg-gray-900">
-      <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-basic">
         <a
           href="#"
           className="  text-2xl font-semibold text-gray-900 dark:text-white"
@@ -72,7 +71,6 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-    </section>
   );
 };
 

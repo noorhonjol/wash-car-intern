@@ -27,10 +27,11 @@ const router=createBrowserRouter(
       <Route path="addservies" element={<AddServies/>}/>
       <Route path="servies" element={<Servies/>}/>
       <Route path="choosevehicle" element={<ChooseVehicle/>}/>
+      <Route path="dashboard" element={<AdminLayout/>}>
       <Route path="listservies" element={<ListServies/>}/>
       <Route path="listvehicles" element={<ListVehicles/>}/>
       <Route path="addvehicle" element={<AddVehcile/>}/>
-
+       </Route>
   </Route>
   )
 
@@ -38,6 +39,7 @@ const router=createBrowserRouter(
 function App() {
   return (
     <RouterProvider router={router}/>
+
   )
 }
 

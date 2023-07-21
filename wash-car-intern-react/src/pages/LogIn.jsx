@@ -25,8 +25,7 @@ const inputAttributes=[
 
 const LogIn = () => {
   return (
-    <section className="bg-basic">
-      <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 bg-basic">
         <a href="#" className=" flex items-center text-2xl font-semibold text-gray-900 ">
           <img className="w-64 h-45 mb-4 " src="logo.png" alt="logo"/>     
         </a>
@@ -57,7 +56,6 @@ const LogIn = () => {
           </div>
       </div>
     </div>
-  </section>
   )
 }
 
