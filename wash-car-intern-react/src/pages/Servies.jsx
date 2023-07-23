@@ -12,7 +12,7 @@ const Servies = () => {
 
   return (
     <div className="bg-basic">
-        <h2 className="font-bold text-lg p-5"> Step 2 : Choose your servies.</h2>
+        <h2 className="font-bold text-lg p-5 mt-20"> Step 2 : Choose your servies.</h2>
         <div className="w-4/5 my-0 mx-auto grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1  items-center justify-center h-screen">
       {servies.map((e,i)=>{
         return <Card key={i} src={e.src} alt={e.alt} type={e.type} description={e.description} price={e.price}/>
