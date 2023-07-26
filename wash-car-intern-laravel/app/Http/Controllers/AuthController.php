@@ -37,7 +37,7 @@ class AuthController extends Controller
 
         
         return response()->json([
-            "UserToken "=>$newUser->createToken("user token")->plainTextToken,
+            "UserToken"=>$newUser->createToken("user token")->plainTextToken,
             "UserInfo"=>$newUser
         
         ]);
@@ -48,7 +48,7 @@ class AuthController extends Controller
         
         if(!Auth::attempt(['password'=>$request->password,'phone_number'=>$request->phonenumber])){
 
-            return response()->json(['message'=>'user credenitial not match']);
+            return response()->json(['message'=>'user credenitial not match'],401);
         }
         $loggingIn=User::where(["phone_number"=>$request->phonenumber])->first();
 
@@ -56,8 +56,12 @@ class AuthController extends Controller
             'UserInfo'=>$loggingIn,
             "UserToken"=>$loggingIn->createToken("user token")->plainTextToken
         ]);
-
-
+    }
+    public function logout(Request $request){
+        
+        
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(["message"=>"your token deleted success"]);
 
     }
 }

@@ -1,9 +1,7 @@
-import { NavLink } from "react-router-dom";
-
-let isLogIn=true;
-
+import { Form, Link, NavLink, useRouteLoaderData } from "react-router-dom";
+import { rules } from "../ults/constants";
 const NavBar = () => {
-  // const [isLogIn, setIsLogIn] = useState();
+  const { token, rule } = useRouteLoaderData("root");
   return (
     <nav className="bg-white w-full z-20 top-0 left-0 border-b border-gray-200 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
@@ -11,20 +9,23 @@ const NavBar = () => {
           <img src="logo.png" className="h-20 mr-2 w-30 " alt="4asleh Logo" />
         </NavLink>
         <div className="flex md:order-2 ">
-          {isLogIn ? (
-            <button
-              type="button"
-              className="text-white bg-bblue hover:bg-White-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
-            >
-              LOG OUT
-            </button>
-          ) : (
-            <button
-              type="button"
+          {token && (
+            <Form action="logout" method="post">
+              <button
+                type="submit"
+                className="text-white bg-bblue hover:bg-White-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
+              >
+                LOG OUT
+              </button>
+            </Form>
+          )}
+          {!token && (
+            <Link
+              to="login"
               className="text-white bg-bblue hover:bg-White-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 "
             >
               LOG IN
-            </button>
+            </Link>
           )}
           <button
             data-collapse-toggle="navbar-sticky"
@@ -64,22 +65,47 @@ const NavBar = () => {
                 HOME
               </NavLink>
             </li>
+
             <li>
-              <NavLink
-                to="/tracker"
-                className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue "
-              >
-                TRACK
-              </NavLink>
+              {rule === rules.customerRule && (
+                <NavLink
+                  to="/tracker"
+                  className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue"
+                >
+                  TRACK
+                </NavLink>
+              )}
             </li>
             <li>
-              <NavLink
-                to="/profile"
-                className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue "
-              >
-                PROFILE
-              </NavLink>
+              {token && (
+                <NavLink
+                  to="/profile"
+                  className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue "
+                >
+                  PROFILE
+                </NavLink>
+              )}
             </li>
+            {rule === rules.AdminRule && (
+              <li>
+                <NavLink
+                  to="dashboard"
+                  className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
+            {rule === rules.workerRule && (
+              <li>
+                <NavLink
+                  to="orders"
+                  className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue"
+                >
+                  Orders
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>

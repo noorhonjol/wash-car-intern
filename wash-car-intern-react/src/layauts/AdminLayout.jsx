@@ -1,10 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import NavBarAdmin from "../components/NavBarAdmin";
-export default function () {
+const AdminLayout= ()=> {
   return (
     <div className="flex w-full bg-basic ">
       <NavBarAdmin />
-        <Outlet className="w-full " />
+      <Outlet/>
     </div>
   )
 }
+export default AdminLayout
