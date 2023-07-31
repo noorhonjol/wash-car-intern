@@ -1,8 +1,10 @@
 import {
+  Outlet,
   Route,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
+  
 } from "react-router-dom";
 import SignUp from "./pages/SignUp.jsx";
 import LogIn from "./pages/LogIn.jsx";
@@ -19,25 +21,35 @@ import ChooseVehicle from "./pages/ChooseVehicle.jsx";
 import AdminLayout from "./layauts/AdminLayout.jsx";
 import AddVehcile from "./pages/AddVehicle.jsx";
 import Logout from "./components/logout.js";
-import { FetchData, authInfo } from "./ults/helpers.js";
+import ConfirmReservation from "./pages/ConfirmReservation.jsx"
+import { FetchData, authInfo,loaderForServicesPage,loaderForConfirmPage,confirmReservationAction } from "./ults/helpers.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} id='root' loader={authInfo}>
-      <Route path="map" element={<MapContainer />} />
+
+      <Route path="reservation" element={<div><Outlet/></div>}>
+
+        <Route path="map" element={<MapContainer />}/>
+        <Route path="choosevehicle" element={<ChooseVehicle />} id="selectvehicle" loader={async()=>await FetchData("vehicles")}/>  
+        <Route path="services" element={<Servies />} id="selectservices" loader={loaderForServicesPage}/>
+        <Route path="confirm" element={<ConfirmReservation/>} id="confirmreservation" loader={loaderForConfirmPage} action={confirmReservationAction}/>
+      </Route>
+
       <Route index element={<HomePage />} />
       <Route path="login"  element={<LogIn />} />
       <Route path="signup"  element={<SignUp />} />
       <Route path="tracker"  element={<Tracker />} />
       <Route path="profile" element={<Profile />} />
-      <Route path="addservies" element={<AddServies />} />
-      <Route path="servies" element={<Servies />} />
-      <Route path="choosevehicle" element={<ChooseVehicle />} />
+
       <Route path="dashboard" element={<AdminLayout />}>
         <Route path="listservices" index element={<ListServies />} id="services" loader={async()=>await FetchData("services")} />
         <Route path="listvehicles" element={<ListVehicles />} id="vehicles" loader={async()=>await FetchData("vehicles")}/>
         <Route path="addvehicle" element={<AddVehcile />} />
+        <Route path="addservice" element={<AddServies />} />
       </Route>
+
+
       <Route path='/logout' action={Logout}/>
     </Route>
   )

@@ -8,7 +8,7 @@ const ListVehicles = () => {
     return (
         <div className=" flex flex-col items-start mt-4 my-0 mx-auto ">
         
-            {data.length?<Table columns={Object.keys(data[0])} data={data} />:<EmptyTable/>}
+            {data.length?<Table columns={Object.keys(data[0])} data={data} />:<EmptyTable link="addvehicle"/>}
         </div>
     )
 }

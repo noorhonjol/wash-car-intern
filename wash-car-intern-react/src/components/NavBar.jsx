@@ -6,7 +6,7 @@ const NavBar = () => {
     <nav className="bg-white w-full z-20 top-0 left-0 border-b border-gray-200 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/" className="flex items-center">
-          <img src="logo.png" className="h-20 mr-2 w-30 " alt="4asleh Logo" />
+          <img src="/logo.png" className="h-20 mr-2 w-30 " alt="4asleh Logo" />
         </NavLink>
         <div className="flex md:order-2 ">
           {token && (

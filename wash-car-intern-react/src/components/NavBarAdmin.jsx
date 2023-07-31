@@ -22,16 +22,16 @@ const NavBarAdmin = () => {
             </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/listvehicles" className="flex items-center p-2 text-white rounded-lg hover:bg-bblue">
+            <NavLink to="/dashboard/listvehicles" className="flex items-center p-2 text-white rounded-lg hover:bg-bblue">
               <FontAwesomeIcon icon={faCar} />
               <span className="flex-1 ml-3 whitespace-nowrap">Vehicles</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/worker" className="flex items-center p-2  text-white rounded-lg hover:bg-bblue">
+            <NavLink to="/dashboard/worker" className="flex items-center p-2  text-white rounded-lg hover:bg-bblue">
               <FontAwesomeIcon icon={faUsers} />
               <span className="flex-1 ml-3 whitespace-nowrap">Worker</span>
-            </Link>
+            </NavLink>
           </li>
 
         </ul>

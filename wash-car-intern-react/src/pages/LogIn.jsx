@@ -1,5 +1,4 @@
-import { useRouteLoaderData } from "react-router-dom";
-import IsLogin from "../components/IsLogin";
+import { Navigate, useRouteLoaderData } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
 
 const LogIn = () => {
@@ -10,7 +9,7 @@ const LogIn = () => {
       <img className="w-64 h-45 mb-4 " src="logo.png" alt="logo" />
       <div className="w-full bg-white rounded-3xl shadow md:mt-0 sm:max-w-md xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          {token ? <IsLogin /> : <LoginForm />}
+          {token ? <Navigate to="/" /> : <LoginForm />}
         </div>
       </div>
     </div>

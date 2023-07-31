@@ -23,6 +23,9 @@ class ServicesController extends Controller
         
     
     }
+    public function getServiceById($id){
+        return Service::find($id);
+    }
     public function add(Request $request){
         
         $request->validate([
