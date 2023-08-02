@@ -29,7 +29,7 @@ class AuthController extends Controller
             'first_name'=>$request->firstname,
             'last_name'=>$request->lastname,
             'phone_number'=>$request->phonenumber,
-            'password'=> hash::make($request->password),
+            'password'=> Hash::make($request->password),
             'role'=>'customer'
             ]
         );

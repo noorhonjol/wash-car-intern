@@ -6,6 +6,7 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\VehicleController;
 use App\Models\Reservation;
 use App\Models\Service;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,12 +48,13 @@ Route::middleware(["auth:sanctum"])->group(function(){
     // just for admin
     
     Route::middleware(["can:Admin"])->group(function(){
-        Route::get('/services',[ServicesController::class,'index']);
-        
+        Route::get('/services',[ServicesController::class,'index']);   
         Route::delete('/service/{id}/delete',[ServicesController::class,'delete']); 
         Route::post('/service/add',[ServicesController::class,'add']);
         Route::post('/vehicle/add',[VehicleController::class,'add']);
-        Route::post('/vehicle/{id}/delete',[VehicleController::class,'delete']);
+        Route::delete('/vehicle/{id}/delete',[VehicleController::class,'delete']);
+        Route::put("/vehicle/{id}/edit",[VehicleController::class,"edit"]);
+        Route::put("/service/{id}/edit",[ServicesController::class,"edit"]);
 
     });
 
