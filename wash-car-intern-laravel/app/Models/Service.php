@@ -15,7 +15,7 @@ class Service extends Model
         'description'
     ];
     public function vehicle(){
-        $this->belongsTo(Vehicle::class);
+        return $this->belongsTo(Vehicle::class,"vehicle_id");
     }
     public function reservations()
     {

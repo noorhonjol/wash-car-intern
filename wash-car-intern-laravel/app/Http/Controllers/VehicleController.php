@@ -38,5 +38,8 @@ class VehicleController extends Controller
         return response()->json(["message"=>"done delete element","data"=>$serchedVehicle],204);
         
     }
+    public function getVehicleById($id){
+        return response()->json(Vehicle::find($id));
+    }
     
 }

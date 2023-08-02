@@ -25,9 +25,13 @@ class Reservation extends Model
         return $this->belongsTo(User::class,"worker_id");
     }
 
+    public function vehicle(){
+        return $this->hasOneThrough(Vehicle::class,Service::class,"id","id",'service_id','vehicle_id');
+
+    }
     public function service()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Service::class,"service_id");
     }
     
     

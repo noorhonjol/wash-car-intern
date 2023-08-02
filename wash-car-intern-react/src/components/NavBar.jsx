@@ -99,10 +99,10 @@ const NavBar = () => {
             {rule === rules.workerRule && (
               <li>
                 <NavLink
-                  to="orders"
+                  to="reservations"
                   className=" py-2 pl-3 pr-4 text-White-blue hover:text-bblue"
                 >
-                  Orders
+                  Reservations
                 </NavLink>
               </li>
             )}

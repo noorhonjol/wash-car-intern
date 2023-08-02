@@ -22,7 +22,9 @@ import AdminLayout from "./layauts/AdminLayout.jsx";
 import AddVehcile from "./pages/AddVehicle.jsx";
 import Logout from "./components/logout.js";
 import ConfirmReservation from "./pages/ConfirmReservation.jsx"
-import { FetchData, authInfo,loaderForServicesPage,loaderForConfirmPage,confirmReservationAction } from "./ults/helpers.js";
+import { FetchData, authInfo,loaderForServicesPage,loaderForConfirmPage,confirmReservationAction,updateData } from "./ults/helpers.js";
+import Reservations from "./pages/Reservations.jsx";
+import ReservationDetails from "./pages/ReservationDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -39,7 +41,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="login"  element={<LogIn />} />
       <Route path="signup"  element={<SignUp />} />
-      <Route path="tracker"  element={<Tracker />} />
+      <Route path="tracker" id="customerReservation" loader={async()=>FetchData("customer/reservations")} element={<Tracker />} />
       <Route path="profile" element={<Profile />} />
 
       <Route path="dashboard" element={<AdminLayout />}>
@@ -48,7 +50,16 @@ const router = createBrowserRouter(
         <Route path="addvehicle" element={<AddVehcile />} />
         <Route path="addservice" element={<AddServies />} />
       </Route>
-
+      <Route path="reservations" id="orders" element={<Reservations/>} loader={async()=>await FetchData("worker/reservations")}/>
+      <Route path="reservation/:id" id="details" element={<ReservationDetails/>} 
+      loader={async({params})=>FetchData(`reservation/${params.id}`)} 
+      action={async({request,params})=>{
+        let newData = await request.formData();
+        let newStatus = newData.get("newstatus");
+        const response=await updateData(`reservation/${params.id}`,{newstatus:newStatus});
+        console.log(response);
+        return response;
+      }}/>
 
       <Route path='/logout' action={Logout}/>
     </Route>

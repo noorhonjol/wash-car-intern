@@ -26,7 +26,7 @@ function MapContainer() {
   const navigate=useNavigate();
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCKIMFw5uOgRLBT2kacsZvFaKe1vVHa7M0",
+    googleMapsApiKey: "AIzaSyCdKpgSgWNwwAfh-_9EK6-vBEBFk-YAOXA",
   });
   const handleClose = () => {
     setShowAlert(false);

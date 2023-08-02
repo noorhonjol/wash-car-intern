@@ -1,7 +1,22 @@
 import axios from "axios";
 import { errorCodes, messages, backendUrls } from "./constants";
 import { redirect } from "react-router-dom";
-
+const updateData=async(endPoint,newData)=>{
+  try{
+    const {token}=authInfo();
+    console.log(endPoint,newData)
+    const response=await axios.patch(`${backendUrls.apiUrl}/${endPoint}`,newData,
+    {
+      headers:{
+      "Accept":"application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization:`Bearer ${token}`,
+    }});
+    return response.data;
+  }catch(err){
+    return err;
+  }
+}
 const confirmReservationAction=async({request})=>{
   try{
     const url = new URL(request.url);
@@ -70,6 +85,7 @@ const loaderForConfirmPage=async({request})=>{
 
   
   const {data:vehicle}=await FetchData(`vehicle/${vehicleId}`);
+  console.log(vehicle)
   const {data:service}=await FetchData(`service/${serviceId}`);
   
   return {service:service,vehicle:vehicle};
@@ -107,4 +123,4 @@ const submitForm = async (userData, endPoint) => {
   }
 };
 
-export { FetchData, submitForm, authInfo,loaderForServicesPage,loaderForConfirmPage,PostData,confirmReservationAction };
+export { FetchData, submitForm, authInfo,loaderForServicesPage,loaderForConfirmPage,PostData,confirmReservationAction ,updateData};
