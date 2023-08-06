@@ -17,6 +17,23 @@ const updateData=async(endPoint,newData)=>{
     return err;
   }
 }
+const update=async(endPoint,newData)=>{
+  try{
+    const {token}=authInfo();
+    console.log(endPoint,newData)
+    const response=await axios.put(`${backendUrls.apiUrl}/${endPoint}`,newData,
+    {
+      headers:{
+      "Accept":"application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization:`Bearer ${token}`,
+    }});
+    return response.data;
+  }catch(err){
+    return err;
+  }
+}
+
 const confirmReservationAction=async({request})=>{
   try{
     const url = new URL(request.url);
@@ -35,8 +52,9 @@ const confirmReservationAction=async({request})=>{
 const PostData=async(endPoint,data)=>{
   try {
     const {token}=authInfo();
-
+console.log(data)
     const response = await axios.post(`${backendUrls.apiUrl}/${endPoint}`,data,{
+
       headers:{
       "Accept":"application/vnd.api+json",
       "Content-Type": "application/vnd.api+json",
@@ -123,4 +141,4 @@ const submitForm = async (userData, endPoint) => {
   }
 };
 
-export { FetchData, submitForm, authInfo,loaderForServicesPage,loaderForConfirmPage,PostData,confirmReservationAction ,updateData};
+export { FetchData, submitForm, authInfo,loaderForServicesPage,loaderForConfirmPage,PostData,confirmReservationAction ,updateData,update};

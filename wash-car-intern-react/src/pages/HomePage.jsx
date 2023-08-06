@@ -10,9 +10,9 @@ const picCard = [
 const HomePage = () => {
   return (
     <section className="bg-basic dark:bg-gray-900">
-      <div className=" gap-11 flex flex-col justify-center sm:h-screen md:h-screen lg:py-0">
+      <div className=" gap-11 flex flex-col justify-center sm:h-screen h-screen lg:py-0">
         <div>
-          <h3 className=" font-bold text-center text-gray-400 text-base leading-tight tracking-tight md:text-2xl dark:text-white">
+          <h3 className=" font-bold text-center text-gray-400 text-base leading-tight tracking-tight md:text-2xl ">
             Welcome to our vehicle washing website !
           </h3>
         </div>
