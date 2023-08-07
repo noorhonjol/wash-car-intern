@@ -1,5 +1,5 @@
 import { useRouteLoaderData } from "react-router-dom";
-import Steps from "../components/Steps";
+import Steps from "./ChangeStatus";
 
 const Tracker = () => {
   const { data: reservation } = useRouteLoaderData("customerReservation");

@@ -4,7 +4,6 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-
 } from "react-router-dom";
 import SignUp from "./pages/SignUp.jsx";
 import LogIn from "./pages/LogIn.jsx";
@@ -22,63 +21,51 @@ import AdminLayout from "./layauts/AdminLayout.jsx";
 import AddVehcile from "./pages/AddVehicle.jsx";
 import Logout from "./components/logout.js";
 import ConfirmReservation from "./pages/ConfirmReservation.jsx"
-import { FetchData, authInfo, loaderForServicesPage, loaderForConfirmPage, confirmReservationAction, updateData,update, PostData } from "./ults/helpers.js";
+import { FetchData} from "./ults/api.js";
 import Reservations from "./pages/Reservations.jsx";
 import ReservationDetails from "./pages/ReservationDetails.jsx";
 import EditServices from "./pages/EditServices.jsx";
 import HomeDashborad from "./pages/HomeDashborad.jsx";
-
+import {authInfo,confirmReservationAction,loaderForServicesPage,loaderForConfirmPage, updateServiceAction, updateStatusAction, editServiceLoader, deleteVehicleLoader,deleteServiceLoader}from './ults/routerUtils.js'
+import ChangeStatus from "./pages/ChangeStatus.jsx";
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} id='root' loader={authInfo}>
 
-      <Route path="reservation" element={<div><Outlet /></div>}>
+      <Route index element={<HomePage />} />
 
+      <Route path="reservation" element={<div><Outlet /></div>}>
         <Route path="map" element={<MapContainer />} />
         <Route path="choosevehicle" element={<ChooseVehicle />} id="selectvehicle" loader={async () => await FetchData("vehicles")} />
         <Route path="services" element={<Servies />} id="selectservices" loader={loaderForServicesPage} />
         <Route path="confirm" element={<ConfirmReservation />} id="confirmreservation" loader={loaderForConfirmPage} action={confirmReservationAction} />
       </Route>
 
-      <Route index element={<HomePage />} />
-      <Route path="login" element={<LogIn />} />
-      <Route path="signup" element={<SignUp />} />
-      <Route path="tracker" id="customerReservation" loader={async () => FetchData("customer/reservations")} element={<Tracker />} />
+      <Route path="login" element={<LogIn />}/>
+      <Route path="signup" element={<SignUp />}/>
+      <Route path="tracker"element={<Tracker />} id="customerReservation" loader={async () => FetchData("customer/reservations")}  />
       <Route path="profile" element={<Profile />} />
 
       <Route path="dashboard" element={<AdminLayout />}>
+        <Route index element={<HomeDashborad />} id="homedashboard"loader={async () => FetchData("admin/home")}/>
         <Route path="listservices"  element={<ListServies />} id="services" loader={async () => await FetchData("services")} />
         <Route path="listvehicles" element={<ListVehicles />} id="vehicles" loader={async () => await FetchData("vehicles")} />
         <Route path="addvehicle" element={<AddVehcile />} />
         <Route path="addservice" element={<AddServies />} />
-        <Route index element={<HomeDashborad />} 
-        id="homedashboard"
-        loader={async () => FetchData("admin/home")}
-        />
-        <Route path="editservice/:id" element={<EditServices />}
-          loader={async ({ params }) => FetchData(`service/${params.id}`)}
-          id="editservice"
-          action={async ({ request, params }) => {
-            let newData = await request.formData();
-            const response=await PostData(`service/${params.id}/edit`,newData);
-            return 1;
-          }}
-        />
+        <Route path="editservice/:id" element={<EditServices />} loader={editServiceLoader}id="editservice"action={updateServiceAction}/>
+        <Route path='deleteservice/:id' loader={deleteServiceLoader} />
+        <Route path='deletevehicle/:id' loader={deleteVehicleLoader} />
+
       </Route>
-      <Route path="reservations" id="orders" element={<Reservations />} loader={async () => await FetchData("worker/reservations")} />
-      <Route path="reservation/:id" id="details" element={<ReservationDetails />}
-        loader={async ({ params }) => FetchData(`reservation/${params.id}`)}
-        action={async ({ request, params }) => {
-          let newData = await request.formData();
-          const response = await updateData(`reservation/${params.id}`, { newstatus: newStatus }, 'patch');
-          console.log(response);
 
-          return response;
-        }} />
+      <Route path="reservations"element={<Reservations />} id="orders"  loader={async () => await FetchData("worker/reservations")} />
+      <Route path="reservation/:id" id="details" element={<ReservationDetails />} loader={async ({ params }) => FetchData(`reservation/${params.id}`)}>
+        <Route path="changestatus" element={<ChangeStatus/>}action={updateStatusAction}/>
+      </Route>
 
-      <Route path='/logout' action={Logout} />
+    <Route path='/logout' action={Logout} />
     </Route>
   )
 );

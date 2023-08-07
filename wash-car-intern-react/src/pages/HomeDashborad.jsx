@@ -1,5 +1,5 @@
 import BarChart from "../components/BarChart";
-import { useRouteError, useRouteLoaderData } from 'react-router-dom';
+import {  useRouteLoaderData } from 'react-router-dom';
 
 
 const HomeDashboard = () => {

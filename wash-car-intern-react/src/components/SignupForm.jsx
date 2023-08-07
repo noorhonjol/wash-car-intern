@@ -4,7 +4,7 @@ import SignUpSchema from "../schema/SignUpSchema.js";
 import { Link } from "react-router-dom";
 import { messages,backendUrls} from "../ults/constants";
 
-import { submitForm} from "../ults/helpers";
+import { submitForm} from "../ults/api";
 
 const handleSignUpform = async (values, action) => {
   try {
@@ -45,7 +45,7 @@ const inputAttributes = [
     type: "password",
     label: "Password",
     placeholder: "Enter Your Password",
-  },
+  }
 ];
 const SignupForm = () => {
   return (

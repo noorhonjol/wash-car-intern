@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import HomeIcon from "../components/HomeIcon"
 const picCard = [
 
-  { "src": "speedCar.png", "alt": "Speed Pic", "label": "Speed" },
-  { "src": "quality-icon.png", "alt": "quality Pic", "label": "High quality" },
-  { "src": "R.png", "alt": " Accuracy Pic", "label": " Accuracy in work" },
+  { "src": "/speedCar.png", "alt": "Speed Pic", "label": "Speed" },
+  { "src": "/quality-icon.png", "alt": "quality Pic", "label": "High quality" },
+  { "src": "/R.png", "alt": " Accuracy Pic", "label": " Accuracy in work" },
 ]
 
 const HomePage = () => {

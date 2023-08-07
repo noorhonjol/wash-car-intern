@@ -16,13 +16,13 @@ class AuthController extends Controller
     public function register(Request $request){
         
         $request->validate([
-            'firstname'=>'required|max:255|alpha',
+            'firstname'=>'required|min:2|max:25|alpha',
 
-            'lastname'=>'required|max:255|alpha',
+            'lastname'=>'required|min:2|max:25|alpha',
             
-            'phonenumber'=>'required|max:255',
+            'phonenumber'=>['required','regex:/^(059|056|\+97059|\+97056)\d{7}$/'],
             
-            'password'=>'required'
+            'password'=>'required|min:7|max:255'
         ]);
 
         $newUser=User::create([
@@ -46,6 +46,13 @@ class AuthController extends Controller
 
     public function login(Request $request){
         
+        $request->validate([
+            
+            'phonenumber'=>['required','regex:/^(059|056|\+97059|\+97056)\d{7}$/'],
+            
+            'password'=>'required|min:7|max:255'
+        ]);
+
         if(!Auth::attempt(['password'=>$request->password,'phone_number'=>$request->phonenumber])){
 
             return response()->json(['message'=>'user credenitial not match'],401);
