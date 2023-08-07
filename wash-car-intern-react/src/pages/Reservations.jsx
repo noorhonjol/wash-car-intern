@@ -22,7 +22,7 @@ const Reservations=()=>{
           });
         return(
             <>
-                {rule===rules.workerRule&&transformedReservations?<DynamicTable columns={Object.keys(transformedReservations[0])} data={transformedReservations} action="details" url="reservation" />:<Navigate to="/"/>}
+                {rule===rules.workerRule&&transformedReservations?<DynamicTable columns={Object.keys(transformedReservations[0])} data={transformedReservations} actionsUrl={["reservation"]} url="reservation" />:<Navigate to="/"/>}
             </>
         )
     }else{

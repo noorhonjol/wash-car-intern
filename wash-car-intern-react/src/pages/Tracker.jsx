@@ -1,11 +1,6 @@
 import { useRouteLoaderData } from "react-router-dom";
-import Steps from "./ChangeStatus";
-
 const Tracker = () => {
   const { data: reservation } = useRouteLoaderData("customerReservation");
-  console.log();
-  const { rule } = useRouteLoaderData("root");
-
   return (
     <div className="flex w-4/5 mx-auto h-screen items-center gap-10 text-gray-500">
       {reservation.length ? (
@@ -39,8 +34,6 @@ const Tracker = () => {
           </div>
 
           <p className="mb-10">you order status is {reservation[0].status}</p>
-          
-          <Steps actualStatus={reservation[0].status} rule={rule} />
         </div>
       ) : (
         <div className="text-gray-500 text-5xl flex justify-center items-center w-5/6"><p>you dont have any request go make one</p></div>
