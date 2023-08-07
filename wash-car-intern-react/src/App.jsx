@@ -26,8 +26,10 @@ import Reservations from "./pages/Reservations.jsx";
 import ReservationDetails from "./pages/ReservationDetails.jsx";
 import EditServices from "./pages/EditServices.jsx";
 import HomeDashborad from "./pages/HomeDashborad.jsx";
-import {authInfo,confirmReservationAction,loaderForServicesPage,loaderForConfirmPage, updateServiceAction, updateStatusAction, editServiceLoader, deleteVehicleLoader,deleteServiceLoader}from './ults/routerUtils.js'
+import {authInfo,confirmReservationAction,loaderForServicesPage,loaderForConfirmPage, updateServiceAction, updateStatusAction, editServiceLoader, deleteVehicleLoader,deleteServiceLoader,updateVehicleAction}from './ults/routerUtils.js'
 import ChangeStatus from "./pages/ChangeStatus.jsx";
+import EditVehicle from "./pages/EditVehicle.jsx";
+
 
 
 const router = createBrowserRouter(
@@ -47,7 +49,7 @@ const router = createBrowserRouter(
       <Route path="signup" element={<SignUp />}/>
       <Route path="tracker"element={<Tracker />} id="customerReservation" loader={async () => FetchData("customer/reservations")}  />
       <Route path="profile" element={<Profile />} />
-
+    
       <Route path="dashboard" element={<AdminLayout />}>
         <Route index element={<HomeDashborad />} id="homedashboard"loader={async () => FetchData("admin/home")}/>
         <Route path="listservices"  element={<ListServies />} id="services" loader={async () => await FetchData("services")} />
@@ -55,6 +57,7 @@ const router = createBrowserRouter(
         <Route path="addvehicle" element={<AddVehcile />} />
         <Route path="addservice" element={<AddServies />} />
         <Route path="editservice/:id" element={<EditServices />} loader={editServiceLoader}id="editservice"action={updateServiceAction}/>
+        <Route path="editvehicle/:id" element={<EditVehicle />} loader={async ({params}) => FetchData(`vehicle/${params.id}`)} id="editvehicle" action={updateVehicleAction} /> 
         <Route path='deleteservice/:id' loader={deleteServiceLoader} />
         <Route path='deletevehicle/:id' loader={deleteVehicleLoader} />
 

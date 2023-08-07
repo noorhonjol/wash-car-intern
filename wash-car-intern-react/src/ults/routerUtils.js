@@ -43,7 +43,13 @@ const loaderForConfirmPage = async ({ request }) => {
 const updateServiceAction=async ({ request, params }) => {
   let newData = await request.formData();
   const response=await PostData(`service/${params.id}/edit`,newData);
-  return response;
+  return redirect("/dashboard/listservices");
+}
+const updateVehicleAction=async ({ request, params }) => {
+  let newData = await request.formData();
+  const response=await PostData(`vehicle/${params.id}/edit`,newData);
+  
+  return redirect("/dashboard/listvehicles");
 }
 const updateStatusAction=async ({ request, params }) => {
   let newData = await request.formData();
@@ -58,6 +64,7 @@ const editServiceLoader=async ({ params }) => {
   const {data:availableVehicles}=await FetchData("vehicles");
   return {availableVehicles,serviceData}
 }
+
 
 const deleteServiceLoader=async({params})=>{
   
@@ -83,5 +90,6 @@ export {
   loaderForServicesPage,
   loaderForConfirmPage,
   updateServiceAction,
-  updateStatusAction
+  updateStatusAction,
+  updateVehicleAction,
 };
