@@ -4,7 +4,7 @@ import SignUpSchema from "../schema/SignUpSchema.js";
 import { Link } from "react-router-dom";
 import { messages,backendUrls} from "../ults/constants";
 
-import { submitForm} from "../ults/helpers";
+import { submitForm} from "../ults/api";
 
 const handleSignUpform = async (values, action) => {
   try {
@@ -45,12 +45,12 @@ const inputAttributes = [
     type: "password",
     label: "Password",
     placeholder: "Enter Your Password",
-  },
+  }
 ];
 const SignupForm = () => {
   return (
     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-      <h3 className=" text-center  text-base leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+      <h3 className=" text-center  text-base leading-tight tracking-tight text-gray-900 md:text-2xl">
         Sign up
       </h3>
       <Formik
@@ -80,7 +80,7 @@ const SignupForm = () => {
               className="w-full text-white bg-bblue hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
               Sign Up
             </button>
-            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+            <p className="text-sm font-light text-gray-500 ">
               Have an account ?{" "}
               <Link
                 to="/login"

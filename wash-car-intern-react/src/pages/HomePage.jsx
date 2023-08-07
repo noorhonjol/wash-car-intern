@@ -2,17 +2,17 @@ import { Link } from "react-router-dom"
 import HomeIcon from "../components/HomeIcon"
 const picCard = [
 
-  { "src": "speedCar.png", "alt": "Speed Pic", "label": "Speed" },
-  { "src": "quality-icon.png", "alt": "quality Pic", "label": "High quality" },
-  { "src": "R.png", "alt": " Accuracy Pic", "label": " Accuracy in work" },
+  { "src": "/speedCar.png", "alt": "Speed Pic", "label": "Speed" },
+  { "src": "/quality-icon.png", "alt": "quality Pic", "label": "High quality" },
+  { "src": "/R.png", "alt": " Accuracy Pic", "label": " Accuracy in work" },
 ]
 
 const HomePage = () => {
   return (
     <section className="bg-basic dark:bg-gray-900">
-      <div className=" gap-11 flex flex-col justify-center sm:h-screen md:h-screen lg:py-0">
+      <div className=" gap-11 flex flex-col justify-center sm:h-screen h-screen lg:py-0">
         <div>
-          <h3 className=" font-bold text-center text-gray-400 text-base leading-tight tracking-tight md:text-2xl dark:text-white">
+          <h3 className=" font-bold text-center text-gray-400 text-base leading-tight tracking-tight md:text-2xl ">
             Welcome to our vehicle washing website !
           </h3>
         </div>

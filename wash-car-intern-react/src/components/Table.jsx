@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-const DynamicTable = ({ columns, data,action,url}) => {
+import {  Link } from "react-router-dom";
+const DynamicTable = ({ columns, data,actionsUrl}) => {
   return (
     <> 
-      <Link to="/dashboard/addvehicle" className="text-white bg-bblue hover:bg-White-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center md:mr-0 " >
-        Add New elements
-      </Link>
+
       <div className="w-3/5 sm:rounded-lg md:w2/5 mt-10">
         <table className="text-sm text-left text-gray-500">
           <thead className="text-xs text-dark-blue uppercase bg-gray-50">
@@ -15,8 +13,10 @@ const DynamicTable = ({ columns, data,action,url}) => {
                   {column}
                 </th>
               ))}
-              <th scope="col" className="px-6 py-3"></th>
+              {actionsUrl&&actionsUrl.map((action,index)=><th scope="col" key={index} className="px-6 py-3"></th>)}
+              
             </tr>
+
           </thead>
           <tbody>
             {data.map((row, index) => (
@@ -26,14 +26,22 @@ const DynamicTable = ({ columns, data,action,url}) => {
                     {row[column]}
                   </td>
                 ))}
-                <td className="px-6 py-4 text-right">
-                  <Link
-                    to={`/${url}/${row["id"]}`}
-                    className="font-medium text-bblue hover:underline"
-                  >
-                    {action}
-                  </Link>
-                </td>
+                {actionsUrl&&actionsUrl.map((actionUrl,i)=>{
+
+                  return (
+                  <td key={i} className="px-6 py-4 text-right">
+
+                      <Link
+                        to={`../${actionUrl}/${row.id}`}
+                        className="font-medium text-bblue hover:underline"
+                      >
+                        {actionUrl}
+                      </Link>
+
+                  </td>)
+                })
+                }
+                
               </tr>
             ))}
           </tbody>

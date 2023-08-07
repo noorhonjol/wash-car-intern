@@ -2,7 +2,7 @@ import InputField from "../components/InputField";
 import { Form, Formik } from "formik";
 import LoginSchema from "../schema/LoginSchema";
 import { Link } from "react-router-dom";
-import { submitForm } from "../ults/helpers";
+import { submitForm } from "../ults/api";
 import { messages, backendUrls } from "../ults/constants";
 const inputAttributes = [
   {
@@ -21,7 +21,6 @@ const inputAttributes = [
 const handleLogInform = async (values, action) => {
   try {
     const responseMessage = await submitForm(values, backendUrls.loginEndPoint);
-
     if (responseMessage === messages.successful) {
       window.location = "/";
     } else {
