@@ -1,10 +1,18 @@
-import { NavLink, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import NavBarAdmin from "../components/NavBarAdmin";
-export default function () {
+import { Navigate, useRouteLoaderData } from "react-router-dom";
+import { rules } from "../ults/constants";
+const AdminLayout= ()=> {
+  const{rule}= useRouteLoaderData("root");
   return (
-    <div className="flex w-full bg-basic ">
-      <NavBarAdmin />
-        <Outlet className="w-full " />
-    </div>
+    rule === rules.AdminRule?
+      <div className="flex w-full bg-basic ">
+        <NavBarAdmin />
+        <Outlet/>
+      </div>
+      :<Navigate to="/"/>
+
+    
   )
 }
+export default AdminLayout

@@ -38,5 +38,22 @@ class VehicleController extends Controller
         return response()->json(["message"=>"done delete element","data"=>$serchedVehicle],204);
         
     }
+    public function getVehicleById($id){
+        return response()->json(Vehicle::find($id));
+    }
+    public function edit($id,Request $request){
+
+        $searchedVehicle=Vehicle::find($id);
+
+        if(!$searchedVehicle){
+            
+            return response()->json(['massage'=>'the vehicle not exist'],404);
+        }
+
+        $searchedVehicle->update($request->input());
+
+        return response()->json(["message"=>"done update vehicle","data"=>$searchedVehicle]);
+
+    }
     
 }

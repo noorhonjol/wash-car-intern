@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Return_;
 
 class ServicesController extends Controller
 {
@@ -22,6 +23,9 @@ class ServicesController extends Controller
         return response()->json($vehicle->services);
         
     
+    }
+    public function getServiceById($id){
+        return Service::find($id);
     }
     public function add(Request $request){
         
@@ -56,6 +60,16 @@ class ServicesController extends Controller
         $serchedService->delete();
         return response()->json(["message"=>"done delete element","data"=>$serchedService],204);
         
+    }
+    public function edit($id,Request $request){
+        $serchedService=Service::find($id);
+
+        if(!$serchedService){
+            
+            return response()->json(['massage'=>'the service not exist'],404);
+        }
+        $serchedService->update($request->input());
+        return $serchedService;
     }
 
 }

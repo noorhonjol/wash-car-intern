@@ -1,31 +1,23 @@
-
-import {React,useState,useEffect} from 'react'
-import axios from 'axios';
-import Table from '../components/Table'
-import FetchData from '../helpers/FetchData';
-
+import Table from "../components/Table";
+import { useRouteLoaderData } from "react-router-dom";
+import EmptyTable from "../components/EmptyTable";
 
 const ListServies = () => {
-  const [columnss, setColumns] = useState([]);
-    const [datas, setData] = useState([]);
+  const { data } = useRouteLoaderData("services");
 
-    useEffect(() => {
-        // Fetch the API data here
-        const endPoint = "services"; 
-        FetchData(endPoint)
-          .then((response) => {
-            setData(response.data);
-            setColumns(response.columns);
-          })
-          .catch((error) => {
-            console.error("Error fetching data:", error);
-          });
-    }, []);
   return (
-  <div>
-    <Table columns={columnss} data={datas} />
-  </div>
-  )
-}
+    <div className=" flex flex-col items-start mt-4 my-0 mx-auto ">
+      {data && data.length ? (
+        <Table
+          columns={Object.keys(data[0])}
+          data={data}
+          actionsUrl={["deleteservice","editservice"]}
+        />
+      ) : (
+        <EmptyTable link="addservice" />
+      )}
+    </div>
+  );
+};
 
-export default ListServies
+export default ListServies;

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
+    protected $hidden = ['created_at', 'updated_at'];
     protected $fillable=[
         'service_name',
         'price',
@@ -15,7 +16,7 @@ class Service extends Model
         'description'
     ];
     public function vehicle(){
-        $this->belongsTo(Vehicle::class);
+        return $this->belongsTo(Vehicle::class,"vehicle_id");
     }
     public function reservations()
     {
